@@ -9,10 +9,10 @@ const AddTalk=({speaker,talk})=> {
   const onSubmit = async (e) => {
     console.log('submitted')
     await fetch('https://mylaw-staging.herokuapp.com/talks', {
-      method: "post",
+      method: "update",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        speaker,
+        
         talk
       })
     })
@@ -43,7 +43,7 @@ const AddTalk=({speaker,talk})=> {
           <Modal.Title>Enter Talk and Speaker</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-        <form>
+        <form onSubmit={onSubmit}>
           <input type="text" 
           placeholder='Talk'
           required

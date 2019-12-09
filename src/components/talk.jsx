@@ -32,8 +32,8 @@ class Talk extends React.Component {
   };
 
   deleteTalk = async (e) => {
-    const { talks } = this.state;
-    if (talks.attendee) {
+    
+    if (this.props.talk) {
       await fetch('https://mylaw-staging.herokuapp.com/talks/', {
         method: "delete",
         headers: { "Content-Type": "application/json" },
@@ -50,8 +50,6 @@ class Talk extends React.Component {
                   window.location.reload(true);
                 }, 3000))
               : alert('Error Removing Talk'))
-    } else {
-      alert("Please fill all fields");
     }
   };
 
