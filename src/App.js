@@ -1,26 +1,43 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
+import Header from "./components/header";
+import Talk from "./components/talk";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      talks: {
+        talk: [],
+        speaker: [],
+        attendee: []
+      },
+      nameofAttendee: ""
+    };
+  }
+  componentDidMount(){
+   
+    fetch(`https://mylaw-staging.herokuapp.com/talks`)
+      .then(response => response.json())
+      .then(
+        response =>
+          {this.setState({
+            talk:response.data
+          })}
+      )
+  }
+  render() {
+    return (
+      <div className="App">
+        <Header
+          firstName={this.state.firstName}
+          lastName={this.state.lastName}
+        />
+        <Talk talk={this.state.talks.talk} />
+      </div>
+    );
+  }
 }
 
 export default App;
