@@ -8,7 +8,7 @@ import Button from 'react-bootstrap/Button'
 const AddTalk=({speaker,talk})=> {
   const onSubmit = async (e) => {
     console.log('submitted')
-    await fetch('https://mylaw-staging.herokuapp.com/talks', {
+    await fetch('https://mylaw-staging.herokuapp.com/talks/{id}', {
       method: "update",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
