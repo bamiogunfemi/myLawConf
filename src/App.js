@@ -18,7 +18,7 @@ class App extends Component {
   }
   componentDidMount(){
    
-    fetch(`https://mylaw-staging.herokuapp.com/talks`)
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/talks`)
       .then(response => response.json())
       .then(
         response =>
